@@ -7,6 +7,11 @@ function x=jacobi(mat, results, x = [])
     x = rand(size(results)) * 20;
   endif;
   
-  x = results - (mat - eye(size(results, 1))) * x;
+  [L, D, U] = decomp(mat);
+  
+  % Versão copiada do quadro, não ok: 
+  % x = results - (mat - eye(size(results, 1))) * x;
+
+  x = inv(D) * ((-L - U) * x + results);
 
 endfunction;
