@@ -4,10 +4,8 @@ function x=gauss_seidel(mat, results, x = [])
 
   % Initialize x responses
   if (size(x) == 0)
-    x = rand(size(results)) * 20;
+    x = guess(size(results));
   endif;
-  
-  sizes = size(mat);
   
   [L, D, U] = decomp(mat);
   
