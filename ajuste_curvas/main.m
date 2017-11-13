@@ -14,22 +14,29 @@ P = [
 ];
 
 P = [
-  -2    4.4
-  -0.5  5.1
-  1.2   3.2
-  2.1   1.6
-  3.5   0.1
-  5.4  -0.4
+  -2     4.4
+  -0.5   5.1
+   1.2   3.2
+   2.1   1.6
+   3.5   0.1
+   5.4  -0.4
 ];
 
 
 X = P(:, 1);
 Y = P(:, 2);
 
+% Variance on X
+dev = 0;
+
+for i=2:size(X, 1)
+  dev += (X(i-1) - X(i))/2;
+endfor;
+
 % Espaço de plotagem
-mseX = mse(X, mean(X));
-S = linspace(min(X), max(X), 0.1);
-S = min(X):0.1:max(X);
+% S = linspace(min(X) - dev, max(X) + dev)
+S = linspace(min(X), max(X));
+
 
 % Resposta
 A = linear_regression(X, Y, 1);
@@ -45,5 +52,5 @@ grid on;
 plot(S, polyval(A, S), '-b;Curva ajustada;');
 hold off;
 
-disp(["MSE: " num2str(mse(Y, polyval(A, X)))]);
-disp(["Coeficiente de Determinação (R²): " num2str(coef_determination(Y, polyval(A, X)))]);
+disp(["DiffErro^2: " num2str(sqerror(Y, polyval(A, X)))]);
+disp(["Coeficiente de Determinação (R²): " num2str(mse(Y, polyval(A, X)))]);

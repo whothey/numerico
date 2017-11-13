@@ -1,5 +1,5 @@
-% Lineariza uma função do tipo a = y*x
-function [A, Y, X]=linearize(a, y, x)
+% Lineariza uma função do tipo y = a*x ou y = a*e^(bx)
+function [Y, A, X]=linearize(y, a, x)
   A = log(a);
   Y = log(y);
   X = log(x);
