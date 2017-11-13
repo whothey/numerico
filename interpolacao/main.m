@@ -1,6 +1,9 @@
 clear;
 clc;
 
+output_precision(16);
+format long;
+
 disp("Interpolação");
 
 P = [
@@ -20,23 +23,33 @@ P = [
 ];
 %#}
 
-
+#{
 P = [
   1 40
   3 47
   5 53
   7 55
 ];
+#}
+
+P = [
+  0   1
+  0.5 0.1353352
+  1   0.0183156
+  1.5 0.0024787
+  2.3 0.0001010
+];
 
 
 % Ponto a ser interpolado
-x = 5;
-x = 16;
-x = 4;
+%x = 5;
+%x = 16;
+% x = 4;
+x = [0 0.5 0.7 1 1.3 1.5 1.6 1.9 2.3]
 
 X     = P(1:end, 1);
 Y     = P(1:end, 2);
-plotx = min(X):0.1:max(X);
+plotx = min(X):0.01:max(X);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % La Granje
