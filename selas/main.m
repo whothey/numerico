@@ -1,6 +1,8 @@
 clear;
 clc;
 
+addpath('../stopping_criteria');
+
 sela = [
   5 5 1
   1 9 4
