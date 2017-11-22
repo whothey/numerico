@@ -26,17 +26,9 @@ P = [
 X = P(:, 1);
 Y = P(:, 2);
 
-% Variance on X
-dev = 0;
-
-for i=2:size(X, 1)
-  dev += (X(i-1) - X(i))/2;
-endfor;
-
 % Espaço de plotagem
 % S = linspace(min(X) - dev, max(X) + dev)
 S = linspace(min(X), max(X));
-
 
 % Resposta
 A = linear_regression(X, Y, 1);
@@ -49,6 +41,18 @@ plot(X, Y, '.r;Pontos da Amostra;');
 title('Ajuste de Curvas');
 hold on;
 grid on;
+
+Yhat = polyval(A, X);
+Yerr = Y;
+Yerr += (Yhat - Yerr) / 2;
+
+for i=1:size(Yerr, 1)
+  text(X(i), Yerr(i), num2str(abs(Yhat(i) - Yerr(i))));
+endfor;
+
+ebars = errorbar(X, Yerr, (polyval(A, X) - Y) / 2, '~;Erros;');
+set(ebars, "linestyle", "none");
+
 plot(S, polyval(A, S), '-b;Curva ajustada;');
 hold off;
 
