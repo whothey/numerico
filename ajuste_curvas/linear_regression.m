@@ -5,7 +5,6 @@ function R=linear_regression(X, Y, dg = 1)
   
   for i=1:size(X, 1)
     for j=1:dg
-      %disp(["Doing " num2str(X(i)) "^" num2str(dg-j+1) " to (" num2str(i) ',' num2str(j) ')']);
       A(i, j) = X(i).^(dg-j+1);
     endfor;
   endfor;

@@ -22,7 +22,6 @@ P = [
    5.4  -0.4
 ];
 
-
 X = P(:, 1);
 Y = P(:, 2);
 
@@ -43,8 +42,7 @@ hold on;
 grid on;
 
 Yhat = polyval(A, X);
-Yerr = Y;
-Yerr += (Yhat - Yerr) / 2;
+Yerr = Y + (Yhat - Y) / 2;
 
 for i=1:size(Yerr, 1)
   text(X(i), Yerr(i), num2str(abs(Yhat(i) - Yerr(i))));
