@@ -4,11 +4,11 @@
 % n  is the number of points to discretize
 % "Euler Modificado"
 function y=runge_kutta_2nd_2(a, b, n, x0, y0, dydx)
-  y = zeros(1, n);
+  y = zeros(1, n-1);
   
   h = discretize(a, b, n);
   
-  for i=0:n-1
+  for i=0:n-2
     if (i == 0)
       xi = x0;
       yi = y0;

@@ -11,9 +11,9 @@ disp("Equações Diferenciais");
 maxiter = 1000;
 
 % fn = @(x, y) x + y;
-fn = @(x, y) x + y;
-% fn = @(x) x;
-% analytic = @(x) (x.^2)/2;
+fn = @(x, y) x - y + 2;
+% fn = @(x) x + x.^2;
+% analytic = @(x) (x.^2)/2 + (x.^3)/3;
 
 x0 = 0;
 y0 = 2;
@@ -25,9 +25,9 @@ n = 11;
 
 h = discretize(a, b, n);
 
-X = a:h:b;
+X = a+h:h:b;
 
-disp(1:n)
+disp(1:n-1)
 
 disp("Euler:");
 eul = euler_method(a, b, n, x0, y0, fn);
@@ -52,13 +52,13 @@ disp(rk4);
 figure(1);
 
 % plot(linspace(a, b), analytic(linspace(a,b)), "-b;Solução Analítica;");
+plot([x0 X], [y0 eul], ".r;Euler;");
 
-plot(X, eul, ".r;Euler;");
 hold on;
 grid on;
 
-plot(X, rk2, "og;Euler Melhorado;");
-plot(X, rk2_2, "vb;Euler Modificado;");
-plot(X, rk3, "pc;Runge-Kutta 3a Ordem;");
-plot(X, rk4, "dm;Runge-Kutta 4a Ordem;");
+plot([x0 X], [y0 rk2], "og;Euler Melhorado;");
+plot([x0 X], [y0 rk2_2], "vb;Euler Modificado;");
+plot([x0 X], [y0 rk3], "pc;Runge-Kutta 3a Ordem;");
+plot([x0 X], [y0 rk4], "dm;Runge-Kutta 4a Ordem;");
 hold off;

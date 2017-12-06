@@ -3,10 +3,10 @@
 % y0 of diferential equation
 % n  is the number of points to discretize
 function y=euler_method(a, b, n, x0, y0, der)
-  y = zeros(1, n);
+  y = zeros(1, n-1);
   h = discretize(a, b, n);
   
-  for i=0:n-1
+  for i=0:n-2
     if (i == 0)
       xi = x0;
       yi = y0;
