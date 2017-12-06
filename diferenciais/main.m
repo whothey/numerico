@@ -11,12 +11,12 @@ disp("Equações Diferenciais");
 maxiter = 1000;
 
 % fn = @(x, y) x + y;
-fn = @(x, y) x - y + 2;
-% fn = @(x) x + x.^2;
-% analytic = @(x) (x.^2)/2 + (x.^3)/3;
+% fn = @(x, y) x - y + 2;
+fn = @(x) x + x.^2;
+analytic = @(x) (x.^2)/2 + (x.^3)/3;
 
 x0 = 0;
-y0 = 2;
+y0 = 0;
 
 % [a, b] discretized by n points
 a = 0;
@@ -51,12 +51,12 @@ disp(rk4);
 
 figure(1);
 
-% plot(linspace(a, b), analytic(linspace(a,b)), "-b;Solução Analítica;");
-plot([x0 X], [y0 eul], ".r;Euler;");
+plot(linspace(a, b), analytic(linspace(a,b)), "-b;Solução Analítica;");
 
 hold on;
 grid on;
 
+plot([x0 X], [y0 eul], ".r;Euler;");
 plot([x0 X], [y0 rk2], "og;Euler Melhorado;");
 plot([x0 X], [y0 rk2_2], "vb;Euler Modificado;");
 plot([x0 X], [y0 rk3], "pc;Runge-Kutta 3a Ordem;");

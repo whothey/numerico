@@ -4,13 +4,16 @@ function test_iter(ode_solver, precision)
   
   for i=2:100000
     npoints = i+1;
-    current = ode_solver(npoints);
+    current = ode_solver(npoints)(end);
+    delta = current - old;
     
-    if (current - old < precision)
-      disp([precision "precision achieved with" npoints "points, with " i "iteractions"]); 
+    if (delta < precision)
+      disp([num2str(precision ) " precision achieved with " num2str(npoints) " points and " num2str(i) " iteractions"]); 
       return
     endif
     
     old = current;
   endfor;
+  
+  disp(["Max iter achieved"]);
 endfunction;
